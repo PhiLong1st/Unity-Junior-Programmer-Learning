@@ -17,10 +17,6 @@ namespace CourseLibraryPrototype4
     private bool _hasPowerUp;
     private float _powerUpStrength = 15f;
 
-
-    private float _debugTimer = 0f;
-    private int _order = 0;
-
     void Awake()
     {
       controls = new InputSystem_Actions();
@@ -45,7 +41,6 @@ namespace CourseLibraryPrototype4
       float forwardInput = moveInput.y;
 
       playerRb.AddForce(focalPoint.transform.forward * forwardInput * playerSpeed * Time.deltaTime);
-
       powerupIndicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
     }
 
@@ -57,21 +52,9 @@ namespace CourseLibraryPrototype4
         _hasPowerUp = true;
         Destroy(other.gameObject);
 
-        StartCoroutine(DebugTimerRoutine());
+        StartCoroutine(PowerUpCountdownRoutine());
         powerupIndicator.gameObject.SetActive(true);
       }
-    }
-
-    private IEnumerator DebugTimerRoutine()
-    {
-      while (_debugTimer < 7f)
-      {
-        _debugTimer += Time.deltaTime;
-        yield return null;
-      }
-
-      _hasPowerUp = false;
-      powerupIndicator.gameObject.SetActive(false);
     }
 
     private IEnumerator PowerUpCountdownRoutine()

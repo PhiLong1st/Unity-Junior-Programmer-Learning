@@ -1,89 +1,84 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Challenge5
 {
   public class TargetX : MonoBehaviour
   {
-    private GameManagerX gameManagerX;
-    public int pointValue;
-    public GameObject explosionFx;
+    [SerializeField] private FoodData foodData;
 
-    public float timeOnScreen = 1.0f;
+    private FoodType _foodType;
+    private int _pointValue;
+    private GameObject _explosionFx;
+    private float _timeOnScreen = 1.5f;
 
-    private float minValueX = -3.75f; // the x value of the center of the left-most square
-    private float minValueY = -3.75f; // the y value of the center of the bottom-most square
-    private float spaceBetweenSquares = 2.5f; // the distance between the centers of squares on the game board
+    private float minValueX = -3.75f;
+    private float minValueY = -3.75f;
+    private float spaceBetweenSquares = 2.5f;
 
-    private void Awake()
+    private void Initialize()
     {
-      gameManagerX = GameObject.Find("Game Manager").GetComponent<GameManagerX>();
+      _foodType = foodData.foodType;
+      _pointValue = foodData.pointValue;
+      _explosionFx = foodData.explosionFx;
+      _timeOnScreen = foodData.timeOnScreen;
     }
 
-    void Start()
+    private void Start()
     {
+      Initialize();
       transform.position = RandomSpawnPosition();
-      StartCoroutine(RemoveObjectRoutine()); // begin timer before target leaves screen
+      StartCoroutine(RemoveObjectRoutine());
     }
 
-    // When target is clicked, destroy it, update score, and generate explosion
-    private void OnMouseEnter()
+    private void Update()
     {
-      if (gameManagerX.isGameActive)
+      if (GameManagerX.Instance.isGameActive && Mouse.current.leftButton.wasPressedThisFrame)
       {
         Destroy(gameObject);
-        gameManagerX.UpdateScore(pointValue);
+        GameManagerX.Instance.UpdateScore(_pointValue);
         Explode();
       }
-
     }
 
-    // Generate a random spawn position based on a random index from 0 to 3
-    Vector3 RandomSpawnPosition()
+    private Vector3 RandomSpawnPosition()
     {
       float spawnPosX = minValueX + (RandomSquareIndex() * spaceBetweenSquares);
       float spawnPosY = minValueY + (RandomSquareIndex() * spaceBetweenSquares);
 
       Vector3 spawnPosition = new Vector3(spawnPosX, spawnPosY, 0);
       return spawnPosition;
-
     }
 
-    // Generates random square index from 0 to 3, which determines which square the target will appear in
-    int RandomSquareIndex()
+    private int RandomSquareIndex()
     {
       return Random.Range(0, 4);
     }
 
-
-    // If target that is NOT the bad object collides with sensor, trigger game over
     private void OnTriggerEnter(Collider other)
     {
       Destroy(gameObject);
 
       if (other.gameObject.CompareTag("Sensor") && !gameObject.CompareTag("Bad"))
       {
-        gameManagerX.GameOver();
+        GameManagerX.Instance.GameOver();
       }
-
     }
 
-    // Display explosion particle at object's position
-    void Explode()
+    private void Explode()
     {
-      Instantiate(explosionFx, transform.position, explosionFx.transform.rotation);
+      Instantiate(_explosionFx, transform.position, _explosionFx.transform.rotation);
     }
 
-    // After a delay, Moves the object behind background so it collides with the Sensor object
-    IEnumerator RemoveObjectRoutine()
+    private IEnumerator RemoveObjectRoutine()
     {
-      yield return new WaitForSeconds(timeOnScreen);
-      if (gameManagerX.isGameActive)
+      yield return new WaitForSeconds(_timeOnScreen);
+      if (GameManagerX.Instance.isGameActive)
       {
         transform.Translate(Vector3.forward * 5, Space.World);
       }
     }
-
   }
 }

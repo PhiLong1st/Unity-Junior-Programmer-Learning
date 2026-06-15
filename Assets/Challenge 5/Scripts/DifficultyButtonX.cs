@@ -1,23 +1,38 @@
-﻿namespace Challenge5
+﻿using UnityEngine;
+using UnityEngine.UI;
+namespace Challenge5
 {
-  using UnityEngine;
-  using UnityEngine.UI;
+  public enum LevelDifficulty
+  {
+    Easy,
+    Medium,
+    Hard
+  }
 
   public class DifficultyButtonX : MonoBehaviour
   {
-    private Button _button;
-    public int difficulty;
+    [SerializeField] private LevelData data;
 
-    void Start()
+    private Button button;
+
+    private void Awake()
     {
-      _button = GetComponent<Button>();
-      _button.onClick.AddListener(SetDifficulty);
+      button = GetComponent<Button>();
     }
 
-    void SetDifficulty()
+    private void OnEnable()
     {
-      Debug.Log(_button.gameObject.name + " was clicked");
-      GameManager.Instance.StartGame();
+      button.onClick.AddListener(SetDifficulty);
+    }
+
+    private void SetDifficulty()
+    {
+      GameManagerX.Instance.StartGame(data);
+    }
+
+    private void OnDisable()
+    {
+      button.onClick.RemoveListener(SetDifficulty);
     }
   }
 }

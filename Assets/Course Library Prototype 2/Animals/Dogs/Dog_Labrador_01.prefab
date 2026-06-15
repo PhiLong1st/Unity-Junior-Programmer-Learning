@@ -2528,11 +2528,10 @@ GameObject:
   - component: {fileID: 9520678}
   - component: {fileID: -9049217488273041976}
   - component: {fileID: 4182297755348447611}
-  - component: {fileID: 1937866257666108751}
   - component: {fileID: -3062263110815374310}
   m_Layer: 0
   m_Name: Dog_Labrador_01
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2638,18 +2637,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CourseLibraryPrototype2.DestroyOutOfBounds
   topBound: 100
   lowerBound: -15
---- !u!114 &1937866257666108751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99af48c94408c05e18cd751033ea5c6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CourseLibraryPrototype2.DetectCollisions
 --- !u!65 &-3062263110815374310
 BoxCollider:
   m_ObjectHideFlags: 0

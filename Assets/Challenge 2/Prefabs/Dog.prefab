@@ -5664,7 +5664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aba24ec01e08d4e8596c800afced39e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Challenge2.MoveForwardX
-  speed: 12
+  _speed: 30
 --- !u!1 &8241448880393145945
 GameObject:
   m_ObjectHideFlags: 0

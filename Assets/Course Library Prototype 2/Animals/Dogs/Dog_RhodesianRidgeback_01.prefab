@@ -243,11 +243,10 @@ GameObject:
   - component: {fileID: 9545864}
   - component: {fileID: -8760259656458403599}
   - component: {fileID: 3151631484363807289}
-  - component: {fileID: -6558276760922624228}
   - component: {fileID: 7696076507066670903}
   m_Layer: 0
   m_Name: Dog_RhodesianRidgeback_01
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -353,18 +352,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CourseLibraryPrototype2.DestroyOutOfBounds
   topBound: 100
   lowerBound: -15
---- !u!114 &-6558276760922624228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 105536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99af48c94408c05e18cd751033ea5c6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CourseLibraryPrototype2.DetectCollisions
 --- !u!65 &7696076507066670903
 BoxCollider:
   m_ObjectHideFlags: 0

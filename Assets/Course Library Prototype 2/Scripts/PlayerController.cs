@@ -6,22 +6,22 @@ namespace CourseLibraryPrototype2
   [RequireComponent(typeof(Rigidbody))]
   public class PlayerController : MonoBehaviour
   {
-    public GameObject projectilePrefab;
+    [SerializeField] private InputAction _moveAction;
+    [SerializeField] private InputAction _fireAction;
 
+    public GameObject projectilePrefab;
     public float xRange = 10.0f;
     public float speed = 5f;
-    public InputAction moveAction;
-    public InputAction fireAction;
 
     void OnEnable()
     {
-      moveAction.Enable();
-      fireAction.Enable();
+      _moveAction.Enable();
+      _fireAction.Enable();
     }
 
-    void Update()
+    private void Update()
     {
-      Vector2 horizontalInput = moveAction.ReadValue<Vector2>();
+      Vector2 horizontalInput = _moveAction.ReadValue<Vector2>();
 
       Vector3 newPosition = new Vector3(
         Mathf.Clamp(transform.position.x + horizontalInput.x * speed * Time.deltaTime, -xRange, xRange),
@@ -30,7 +30,7 @@ namespace CourseLibraryPrototype2
       );
       transform.position = newPosition;
 
-      if (fireAction.triggered)
+      if (_fireAction.triggered)
       {
         Fire();
       }
@@ -43,8 +43,8 @@ namespace CourseLibraryPrototype2
 
     private void OnDisable()
     {
-      moveAction.Disable();
-      fireAction.Disable();
+      _moveAction.Disable();
+      _fireAction.Disable();
     }
   }
 }

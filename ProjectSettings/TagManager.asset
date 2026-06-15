@@ -9,6 +9,11 @@ TagManager:
   - Enemy
   - DestroyZone
   - Bad
+  - Powerup
+  - Money
+  - Bomb
+  - Dog
+  - Animal
   layers:
   - Default
   - TransparentFX

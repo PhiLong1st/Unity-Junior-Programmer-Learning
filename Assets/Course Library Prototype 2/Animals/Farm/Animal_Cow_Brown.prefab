@@ -574,11 +574,10 @@ GameObject:
   - component: {fileID: 9513126}
   - component: {fileID: 146552713092077979}
   - component: {fileID: 4374305827165764924}
-  - component: {fileID: -31235071003482352}
   - component: {fileID: -4245254164306913890}
   m_Layer: 0
   m_Name: Animal_Cow_Brown
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -648,18 +647,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CourseLibraryPrototype2.MoveForward
   speed: -3
---- !u!114 &-31235071003482352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 134694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99af48c94408c05e18cd751033ea5c6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CourseLibraryPrototype2.DetectCollisions
 --- !u!65 &-4245254164306913890
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -5452,11 +5452,10 @@ GameObject:
   - component: {fileID: 9542146}
   - component: {fileID: 2276072243145084841}
   - component: {fileID: 7570165858180683140}
-  - component: {fileID: -7569556106041651360}
   - component: {fileID: 520709233766961852}
   m_Layer: 0
   m_Name: Dog_Beagle_01
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5562,18 +5561,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DestroyOutOfBounds
   topBound: 100
   lowerBound: -15
---- !u!114 &-7569556106041651360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 187040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99af48c94408c05e18cd751033ea5c6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CourseLibraryPrototype2.DetectCollisions
 --- !u!65 &520709233766961852
 BoxCollider:
   m_ObjectHideFlags: 0

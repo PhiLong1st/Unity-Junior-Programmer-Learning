@@ -1684,11 +1684,10 @@ GameObject:
   - component: {fileID: 9544832}
   - component: {fileID: 5749301497096603548}
   - component: {fileID: 7387452243015819760}
-  - component: {fileID: 4245383319111123325}
   - component: {fileID: 1382203007337781412}
   m_Layer: 0
   m_Name: Dog_BorderCollie_01
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1794,18 +1793,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CourseLibraryPrototype2.DestroyOutOfBounds
   topBound: 100
   lowerBound: -15
---- !u!114 &4245383319111123325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 125240}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99af48c94408c05e18cd751033ea5c6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CourseLibraryPrototype2.DetectCollisions
 --- !u!65 &1382203007337781412
 BoxCollider:
   m_ObjectHideFlags: 0

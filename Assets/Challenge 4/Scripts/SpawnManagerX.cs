@@ -1,74 +1,80 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
+﻿using UnityEngine;
 
 namespace Challenge4
 {
-    public class SpawnManagerX : MonoBehaviour
+  public class SpawnManagerX : MonoBehaviour
+  {
+    private readonly Vector3 powerupSpawnOffset = new Vector3(0, 0, -15);
+
+    [SerializeField] private PlayerControllerX player;
+
+    public GameObject enemyPrefab;
+    public GameObject powerupPrefab;
+
+    private float spawnRangeX = 10;
+    private float spawnZMin = 15;
+    private float spawnZMax = 25;
+
+    public int waveCount = 1;
+
+    private void Awake()
     {
-        public GameObject enemyPrefab;
-        public GameObject powerupPrefab;
-
-        private float spawnRangeX = 10;
-        private float spawnZMin = 15; // set min spawn Z
-        private float spawnZMax = 25; // set max spawn Z
-
-        public int enemyCount;
-        public int waveCount = 1;
-
-
-        public GameObject player;
-
-        // Update is called once per frame
-        void Update()
-        {
-            enemyCount = GameObject.FindGameObjectsWithTag("Powerup").Length;
-
-            if (enemyCount == 0)
-            {
-                SpawnEnemyWave(waveCount);
-            }
-
-        }
-
-        // Generate random spawn position for powerups and enemy balls
-        Vector3 GenerateSpawnPosition()
-        {
-            float xPos = Random.Range(-spawnRangeX, spawnRangeX);
-            float zPos = Random.Range(spawnZMin, spawnZMax);
-            return new Vector3(xPos, 0, zPos);
-        }
-
-
-        void SpawnEnemyWave(int enemiesToSpawn)
-        {
-            Vector3 powerupSpawnOffset = new Vector3(0, 0, -15); // make powerups spawn at player end
-
-            // If no powerups remain, spawn a powerup
-            if (GameObject.FindGameObjectsWithTag("Powerup").Length == 0) // check that there are zero powerups
-            {
-                Instantiate(powerupPrefab, GenerateSpawnPosition() + powerupSpawnOffset, powerupPrefab.transform.rotation);
-            }
-
-            // Spawn number of enemy balls based on wave number
-            for (int i = 0; i < 2; i++)
-            {
-                Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
-            }
-
-            waveCount++;
-            ResetPlayerPosition(); // put player back at start
-
-        }
-
-        // Move player back to position in front of own goal
-        void ResetPlayerPosition()
-        {
-            player.transform.position = new Vector3(0, 1, -7);
-            player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
-            player.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-
-        }
+      if (player is null)
+      {
+        player = GameObject.Find("Player").GetComponent<PlayerControllerX>();
+      }
     }
+
+    private void Update()
+    {
+      bool isEnemyExist = CheckEnemyExist();
+      if (isEnemyExist)
+      {
+        return;
+      }
+
+      SpawnEnemyWave(waveCount);
+
+      bool isPowerupExist = CheckPowerupExist();
+      if (!isPowerupExist)
+      {
+        SpawnPowerUp();
+      }
+
+      player.ResetPosition();
+    }
+
+    private Vector3 GenerateSpawnPosition()
+    {
+      float xPos = Random.Range(-spawnRangeX, spawnRangeX);
+      float zPos = Random.Range(spawnZMin, spawnZMax);
+      return new Vector3(xPos, 0, zPos);
+    }
+
+    private void SpawnEnemyWave(int enemiesToSpawn)
+    {
+      for (int i = 0; i < enemiesToSpawn; i++)
+      {
+        Instantiate(enemyPrefab, GenerateSpawnPosition(), enemyPrefab.transform.rotation);
+      }
+
+      waveCount++;
+    }
+
+    private void SpawnPowerUp()
+    {
+      Vector3 spawnPos = GenerateSpawnPosition() + powerupSpawnOffset;
+      Instantiate(powerupPrefab, spawnPos, powerupPrefab.transform.rotation);
+    }
+
+    private bool CheckEnemyExist()
+    {
+      return GameObject.FindGameObjectsWithTag("Enemy").Length > 0;
+    }
+
+    private bool CheckPowerupExist()
+    {
+      return GameObject.FindGameObjectsWithTag("Powerup").Length > 0;
+    }
+  }
 }

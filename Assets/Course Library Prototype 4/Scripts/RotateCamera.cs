@@ -1,25 +1,17 @@
 using UnityEngine;
 
-public class RotateCamera : MonoBehaviour
+namespace CourseLibraryPrototype4
 {
-    public float rotationSpeed = 150f;
-    private InputSystem_Actions controls;
-
-    void Awake()
-    {
-        controls = new InputSystem_Actions();
-    }
-
-    private void OnEnable()
-    {
-        controls.Player.Enable();
-        Debug.Log(controls.Player.Move);
-    }
+  public class RotateCameraX : MonoBehaviour
+  {
+    [SerializeField] private float speed = 200;
+    [SerializeField] private PlayerController player;
 
     private void Update()
     {
-        Vector2 moveInput = controls.Player.Move.ReadValue<Vector2>();
-        float horizontalInput = moveInput.x;
-        transform.Rotate(Vector3.up, horizontalInput * rotationSpeed * Time.deltaTime);
+      float horizontalInput = Input.GetAxis("Horizontal");
+      transform.Rotate(Vector3.up, horizontalInput * speed * Time.deltaTime);
+      transform.position = player.transform.position;
     }
+  }
 }

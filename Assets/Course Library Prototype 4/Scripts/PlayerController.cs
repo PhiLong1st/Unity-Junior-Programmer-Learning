@@ -1,9 +1,9 @@
-﻿using System.Collections;
 using UnityEngine;
+using System.Collections;
 
-namespace Challenge4
+namespace CourseLibraryPrototype4
 {
-  public class PlayerControllerX : MonoBehaviour
+  public class PlayerController : MonoBehaviour
   {
     [SerializeField] private float _speed = 500;
     [SerializeField] private int powerUpDuration = 5;
@@ -15,6 +15,10 @@ namespace Challenge4
     private Rigidbody playerRb;
     private GameObject focalPoint;
 
+    private void OnEnable()
+    {
+      Time.timeScale = 1;
+    }
     private void Start()
     {
       playerRb = GetComponent<Rigidbody>();
@@ -26,15 +30,22 @@ namespace Challenge4
       float verticalInput = Input.GetAxis("Vertical");
       playerRb.AddForce(focalPoint.transform.forward * verticalInput * _speed * Time.deltaTime);
 
-      powerupIndicator.transform.position = transform.position + new Vector3(0, -0.6f, 0);
+      powerupIndicator.transform.position = transform.position;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-      if (other.gameObject.CompareTag("Powerup"))
+      if (other.gameObject.CompareTag("PowerUp"))
       {
         Destroy(other.gameObject);
         OnCollectPowerup();
+      }
+
+      if (other.gameObject.CompareTag("DestroyZone"))
+      {
+        gameObject.SetActive(false);
+        Time.timeScale = 0;
+        Debug.Log("Game Over!");
       }
     }
 

@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SpawnManager
   obstaclePrefabs:
-  - {fileID: -3361116237754515242, guid: 95927758d3a4cef4ba6c4318f06876fd, type: 3}
   - {fileID: -2582488443106848918, guid: 9610b8dafec667cc087c4e0dff307433, type: 3}
   - {fileID: 4005889742836819214, guid: ee7d0c4ddd804dd4e95f705d43c9135e, type: 3}
   - {fileID: -3881623935183089731, guid: 84a102c1bf03d0a43bd4b342185c2811, type: 3}

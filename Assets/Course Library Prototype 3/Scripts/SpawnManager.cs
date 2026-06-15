@@ -1,27 +1,35 @@
 using UnityEngine;
 
-public class SpawnManager : MonoBehaviour
+namespace CourseLibraryPrototype3
 {
-  public Obstacle[] obstaclePrefabs;
-  private Vector3 spawnPos = new Vector3(25, 0, 0);
-  private float startDelay = 2;
-  private float repeatRate = 2;
-
-  void Start()
+  public class SpawnManager : MonoBehaviour
   {
-    InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
-  }
+    [SerializeField] private PlayerController _playerController;
 
-  void Update()
-  {
+    public Obstacle[] obstaclePrefabs;
+    private Vector3 spawnPos = new Vector3(25, 0, 0);
+    private float startDelay = 2;
+    private float repeatRate = 2;
 
-  }
+    void Start()
+    {
+      InvokeRepeating("SpawnObstacle", startDelay, repeatRate);
+    }
 
-  void SpawnObstacle()
-  {
-    int randomIndex = Random.Range(0, obstaclePrefabs.Length);
-    var prefab = obstaclePrefabs[randomIndex].gameObject;
+    private void Update()
+    {
+      if (_playerController == null || _playerController.IsGameOver)
+      {
+        CancelInvoke("SpawnObstacle");
+      }
+    }
 
-    Instantiate(prefab, spawnPos, prefab.transform.rotation);
+    void SpawnObstacle()
+    {
+      int randomIndex = Random.Range(0, obstaclePrefabs.Length);
+      var prefab = obstaclePrefabs[randomIndex].gameObject;
+
+      Instantiate(prefab, spawnPos, prefab.transform.rotation);
+    }
   }
 }

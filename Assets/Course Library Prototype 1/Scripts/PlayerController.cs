@@ -1,23 +1,26 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
-public class PlayerController : MonoBehaviour
+namespace CourseLibraryPrototype1
 {
-    public float speed = 5f;
-    public float turnSpeed = 100f;
-    public InputAction moveAction;
+  [RequireComponent(typeof(Rigidbody))]
+  public class PlayerController : MonoBehaviour
+  {
+    [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _turnSpeed = 100f;
+    [SerializeField] private InputAction moveAction;
 
-    void OnEnable()
+    private void OnEnable()
     {
-        moveAction.Enable();
+      moveAction.Enable();
     }
 
-    void Update()
+    private void Update()
     {
-        Vector2 moveInput = moveAction.ReadValue<Vector2>();
+      Vector2 moveInput = moveAction.ReadValue<Vector2>();
 
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * moveInput.y);
-        transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * moveInput.x);
+      transform.Translate(Vector3.forward * Time.deltaTime * _speed * moveInput.y);
+      transform.Rotate(Vector3.up * Time.deltaTime * _turnSpeed * moveInput.x);
     }
+  }
 }

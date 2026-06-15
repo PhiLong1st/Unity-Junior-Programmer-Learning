@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerControllerX : MonoBehaviour
+namespace Challenge1
 {
-    public float speed;
-    public float rotationSpeed;
+  public class PlayerControllerX : MonoBehaviour
+  {
+    [SerializeField] private float _speed;
+    [SerializeField] private float _rotationSpeed;
 
-    public InputAction rotateAction;
+    [SerializeField] private InputAction _rotateAction;
 
     void OnEnable()
     {
-        rotateAction.Enable();
+      _rotateAction.Enable();
     }
 
     void FixedUpdate()
     {
-        Vector2 rotateInput = rotateAction.ReadValue<Vector2>();
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-        transform.Rotate(Vector3.left * rotationSpeed * rotateInput.y * Time.deltaTime);
+      Vector2 rotateInput = _rotateAction.ReadValue<Vector2>();
+      transform.Translate(Vector3.forward * _speed * Time.deltaTime);
+      transform.Rotate(Vector3.left * _rotationSpeed * rotateInput.y * Time.deltaTime);
     }
+  }
 }

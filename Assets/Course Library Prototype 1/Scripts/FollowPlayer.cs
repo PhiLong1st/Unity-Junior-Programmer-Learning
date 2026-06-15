@@ -1,13 +1,15 @@
 using UnityEngine;
 
-public class FollowPlayer : MonoBehaviour
+namespace CourseLibraryPrototype1
 {
-  public PlayerController player;
-  public Vector3 cameraOffset = new Vector3(0, 5, -10);
-
-
-  private void LateUpdate()
+  public class FollowPlayer : MonoBehaviour
   {
-    transform.position = player.transform.position + cameraOffset;
+    [SerializeField] private PlayerController _player;
+    [SerializeField] private Vector3 cameraOffset = new Vector3(0, 5, -10);
+
+    private void LateUpdate()
+    {
+      transform.position = _player.transform.position + cameraOffset;
+    }
   }
 }

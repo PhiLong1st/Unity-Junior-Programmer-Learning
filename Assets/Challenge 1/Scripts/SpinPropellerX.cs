@@ -1,10 +1,14 @@
 using UnityEngine;
 
-public class SpinPropellerX : MonoBehaviour
+namespace Challenge1
 {
-  public float rotationSpeed;
-  private void Update()
+  public class SpinPropellerX : MonoBehaviour
   {
-    transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
+    [SerializeField] private float _rotationSpeed;
+
+    private void Update()
+    {
+      transform.Rotate(Vector3.forward * Time.deltaTime * _rotationSpeed);
+    }
   }
 }

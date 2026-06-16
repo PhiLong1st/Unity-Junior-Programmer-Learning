@@ -4,20 +4,25 @@ namespace CourseLibraryPrototype2
 {
   public class DestroyOutOfBounds : MonoBehaviour
   {
-    public float topBound = 30f;
-    public float lowerBound = -10f;
+    [SerializeField] private float topBound = 30f;
+    [SerializeField] private float lowerBound = -10f;
 
     private void Update()
     {
-      if (transform.position.z > topBound || transform.position.z < lowerBound)
+      if (IsOutOfBounds())
       {
-        if (gameObject.CompareTag("Animal"))
+        if (gameObject.CompareTag(TagConstant.Animal))
         {
           Debug.Log("Game Over!");
         }
 
         Destroy(gameObject);
       }
+    }
+
+    private bool IsOutOfBounds()
+    {
+      return transform.position.z > topBound || transform.position.z < lowerBound;
     }
   }
 }

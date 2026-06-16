@@ -6,7 +6,7 @@ namespace CourseLibraryPrototype2
   {
     private void OnTriggerEnter(Collider other)
     {
-      if (other.CompareTag("Player"))
+      if (other.CompareTag(TagConstant.Player))
       {
         return;
       }
